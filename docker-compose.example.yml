@@ -1,0 +1,17 @@
+# Example: Shop Storefront next to an existing shop API. Copy to docker-compose.yml and adjust.
+services:
+  storefront:
+    build:
+      context: .
+      args:
+        MEDIA_ORIGINS: '' # e.g. http://localhost:9200 for MinIO in development
+    ports:
+      - '3002:3002'
+    environment:
+      SHOP_API_URL: http://shop-api:3000 # the shop API as seen from this container
+      SESSION_SECRET: ${SESSION_SECRET:?set SESSION_SECRET (openssl rand -base64 48)}
+      DEFAULT_STORE: us-en
+      SITE_URL: https://shop.example.com
+      # WEBHOOK_SECRET: …   # signing secret of the shop webhook to /api/revalidate
+      # DEMO_MODE: 'true'
+    restart: unless-stopped

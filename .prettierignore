@@ -1,0 +1,8 @@
+.next
+node_modules
+coverage
+src/server/shop-api.d.ts
+next-env.d.ts
+package-lock.json
+dist
+THIRD-PARTY-NOTICES.md
